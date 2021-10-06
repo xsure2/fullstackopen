@@ -1,0 +1,21 @@
+title Exercise 0.6
+
+actor A
+
+A->browser: Submits a new note. Text: "xsure2-test"
+
+note over browser:
+browser executes js-code to add
+new-note on DOM and redraw.
+end note
+
+note over browser:
+browser executes js-code to send
+new-note to server.
+end note
+
+browser-->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server:
+server accepts and stores data
+end note

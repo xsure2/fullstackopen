@@ -1,0 +1,36 @@
+title Exercise 0.4
+
+actor A
+A->browser: Submits a new note. Text: "xsure2-test"
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over server:
+server accepts and stores data
+end note
+
+server-->browser: Responses Accept with relocation to /exampleapp/notes
+
+note over browser:
+browser redirects to server location
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{content:"xsure2-test", date:"2021-10-05T22:20:30.022Z"}, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
